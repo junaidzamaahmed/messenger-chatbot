@@ -159,7 +159,7 @@ let callSendAPI = (sender_psid, response) => {
 const handleSetupInfo = async (req, res) => {
   // Send the HTTP request to the Messenger Platform
   let request_body = {
-    get_started: { payload: "GET_STARTED_PAYLOAD" },
+    get_started: { payload: "get_started" },
     persistent_menu: [
       {
         locale: "default",
