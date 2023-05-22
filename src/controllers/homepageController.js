@@ -123,6 +123,8 @@ let handlePostback = (sender_psid, received_postback) => {
     response = { text: "Thanks!" };
   } else if (payload === "no") {
     response = { text: "Oops, try sending another image." };
+  } else if (payload === "GET_STARTED_PAYLOAD") {
+    response = { text: "Hi there! How can I help you?" };
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
@@ -159,29 +161,29 @@ let callSendAPI = (sender_psid, response) => {
 const handleSetupInfo = async (req, res) => {
   // Send the HTTP request to the Messenger Platform
   let request_body = {
-  "get_started": {
-    "payload": "GET_STARTED_PAYLOAD"
-  },
-  "persistent_menu": [
-    {
-      "locale": "default",
-      "composer_input_disabled": false,
-      "call_to_actions": [
-        {
-          "type": "postback",
-          "title": "Talk to an agent",
-          "payload": "CARE_HELP"
-        },
-        {
-          "type": "web_url",
-          "title": "Shop now",
-          "url": "https://www.originalcoastclothing.com/",
-          "webview_height_ratio": "full"
-        }
-      ]
-    }
-  ]
-}
+    get_started: {
+      payload: "GET_STARTED_PAYLOAD",
+    },
+    persistent_menu: [
+      {
+        locale: "default",
+        composer_input_disabled: false,
+        call_to_actions: [
+          {
+            type: "postback",
+            title: "Talk to an agent",
+            payload: "CARE_HELP",
+          },
+          {
+            type: "web_url",
+            title: "Shop now",
+            url: "https://www.originalcoastclothing.com/",
+            webview_height_ratio: "full",
+          },
+        ],
+      },
+    ],
+  };
   console.log(request_body);
   return new Promise((resolve, reject) => {
     try {
