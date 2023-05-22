@@ -159,36 +159,38 @@ let callSendAPI = (sender_psid, response) => {
 const handleSetupInfo = async (req, res) => {
   // Send the HTTP request to the Messenger Platform
   let request_body = {
-    get_started: { payload: "postback_payload" },
-    persistent_menu: [
-      {
-        locale: "default",
-        composer_input_disabled: false,
-        call_to_actions: [
-          {
-            type: "postback",
-            title: "Talk to an agent",
-            payload: "CARE_HELP",
-          },
-          {
-            type: "web_url",
-            title: "Shop now",
-            url: "https://www.originalcoastclothing.com/",
-            webview_height_ratio: "full",
-          },
-        ],
-      },
-    ],
-  };
+  "get_started": {
+    "payload": "postback_payload"
+  },
+  "persistent_menu": [
+    {
+      "locale": "default",
+      "composer_input_disabled": false,
+      "call_to_actions": [
+        {
+          "type": "postback",
+          "title": "Talk to an agent",
+          "payload": "CARE_HELP"
+        },
+        {
+          "type": "web_url",
+          "title": "Shop now",
+          "url": "https://www.originalcoastclothing.com/",
+          "webview_height_ratio": "full"
+        }
+      ]
+    }
+  ]
+}
   console.log(request_body);
   return new Promise((resolve, reject) => {
     try {
       request(
         {
-          uri: "https://graph.facebook.com/v2.6/me/messenger_profile",
+          uri: "https://graph.facebook.com/v16.0/me/messenger_profile",
           qs: { access_token: PAGE_ACCESS_TOKEN },
           method: "POST",
-          json: JSON.stringify(request_body),
+          json: request_body,
         },
         (err, response, body) => {
           console.log(response);
