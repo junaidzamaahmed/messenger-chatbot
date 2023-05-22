@@ -159,7 +159,7 @@ let callSendAPI = (sender_psid, response) => {
 const handleSetupInfo = async (req, res) => {
   // Send the HTTP request to the Messenger Platform
   let request_body = {
-    get_started: { payload: "get_started" },
+    get_started: { payload: "postback_payload" },
     persistent_menu: [
       {
         locale: "default",
@@ -185,7 +185,7 @@ const handleSetupInfo = async (req, res) => {
     try {
       request(
         {
-          uri: "https://graph.facebook.com/v16.0/me/messenger_profile",
+          uri: "https://graph.facebook.com/v2.6/me/messenger_profile",
           qs: { access_token: PAGE_ACCESS_TOKEN },
           method: "POST",
           json: JSON.stringify(request_body),
