@@ -5,11 +5,12 @@ let router = express.Router();
 
 //init all web routes
 let initWebRoutes = (app) => {
-    router.get("/", homepageController.getHomepage);
-    router.get("/webhook", homepageController.getWebhook);
-    router.post("/webhook", homepageController.postWebhook);
+  router.get("/", homepageController.getHomepage);
+  router.get("/webhook", homepageController.getWebhook);
+  router.post("/webhook", homepageController.postWebhook);
+  router.post("/setup", homepageController.handleSetupInfo);
 
-    return app.use("/", router);
+  return app.use("/", router);
 };
 
 module.exports = initWebRoutes;
