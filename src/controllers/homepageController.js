@@ -160,7 +160,7 @@ const handleSetupInfo = async (req, res) => {
   // Send the HTTP request to the Messenger Platform
   let request_body = {
   "get_started": {
-    "payload": "postback_payload"
+    "payload": "GET_STARTED_PAYLOAD"
   },
   "persistent_menu": [
     {
